@@ -1,0 +1,19 @@
+Aims
+
+Our aim is to create a tool that will help streamline Windows installations. Our tool will provide a way for the less technically inclined individual to reinstall windows and their programs and setting without having to know any advanced concepts or need professional tools. The project has several components that will help ease the pain of windows installations. These consist of the tool itself, which is the backbone of the project. A server to host the website, file server, and a user database. A website to provide people with a place to download their profiles. And final a detection function, that will give the user the option to include a program or setting in their profile.
+
+"Make the profiling software"
+
+The main part of the project is the profiling software. This is the part that will retrieve your user setting and programs, and then reinstall and apply them after a windows reinstall. The software itself is rather simple. It just reads the windows registry to find any programs installed, and any windows setting that have been changed from default. It then used this information to apply the setting after a windows reinstall, and automaticity download and installs the programs you had previously installed. This tool will help save people time and hassle when installing windows, It will help be of help for the less technically inclined people, as the tool will automate much of the process that otherwise would be tough for them. This is the most crucial component and as such is top priority.
+
+"Make a server"
+
+The server is used to provide a place for users to download any user profiles they have uploaded. This allow users to have access to their profile even when their computer is otherwise unusable. It contains a web server, for hosting the website itself. A database for recording usernames and profiles uploaded. And a file server for storing the profiles themselves. This would greatly increase the usability of the tool. As if a user is unable to access their computer, for example a hard drive failure, the user will still have access to their profile and will be able to reinstall windows with their settings and programs. While the server is a great tool and would improve the tool massively, if we cannot make it in time, we can fallback on the tool itself and use it as an offline tool.
+
+"Make a website"
+
+The website will give the users a place to login and retrieve their profile. We will be using external services for authentication, such as Google or Facebook. This way the security of user accounts is maximized. The website will provide a user friendly place to login to your account and download your user profile. It is also a place where people can look up instructions, and can easily contact us for any help that they may need. If we are unable to complete the website we can still use the tool for users to upload to our server. We would just need to implement a login box and a download profile button. While this would not be ideal, but you could still use the tool to retrieve and upload your user profile.
+
+"Detection Function"
+
+The program will also include a function that detects if you have completed a program install and will ask you if you wish to include this in your user profile. The program will also detect if you have changed any settings and will ask if you wish the setting to be included in you user profile. This will give the user the option to include, or not include a program or setting. Giving the user more control over their profile. This would be a nice addition as this would allow the user to customize their profile and keep out programs they would rather not include on a windows reinstall. This would be the final step in developing our profiling software. A such it would not be to bad if we were not able to include it, as the software would still function and would still help make windows installs easier.

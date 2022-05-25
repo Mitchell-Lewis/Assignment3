@@ -1,0 +1,49 @@
+
+The windows registry can be read by a non administrator account and therefore can be read by a program without needing admin rights. 
+
+"What you CAN do, is with C#, use the prebuilt libraries that allows you access to the Registry http://msdn.microsoft.com/en-us/library/microsoft.win32.registry.aspx
+Mind you though, you only have Read/Write access to HKEY_LOCAL_USER, and READONLY to everything else."
+
+Source: https://stackoverflow.com/questions/16370317/accessing-regedit-without-admin-rights#:~:text=You%20can%20run%20regedit%20without%20administrative%20privileges%20by%20launching%20it,of%20HKEY_CURRENT_USER%20are%20read%2Donly.
+
+Once the registry is accessed all programs installed can be read from "HKLM\Software\". This will show most installed program names and versions. This can also be compared to "HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\[app name]". this can give a basic list of most installed programs.
+
+source: https://answers.microsoft.com/en-us/windows/forum/all/where-are-settings-stored/ac84669a-4d06-4553-a4d4-f01313dc068b
+
+This can then be read to a file. example "installed apps.txt"
+
+most program installer processes will be named after the program they are installing, example "CrystalDiskInfo". The program can monitor for user run programs and then ask if the user wants them added to the users installed apps profile
+
+If the previous wont work then the program can monitor for the processes of common install programs, such as install shield. once a installation is completed and the process is stopped, the program can then read the installed programs from the registry and compare to the installed apps.txt file.
+
+It can then add any new programs found to the users installed apps profile.
+
+This method can also be used to copy user settings. for example copying the entries from "HKEY_CURRENT_USER\Control Panel\"
+
+the program can monitor for settings windows and once they are closed can compare to a list of previously installed programs.
+
+If new programs are found then they will be added to the users list of windows settings.
+
+source: https://www.computerhope.com/issues/ch001734.htm#:~:text=or-,Open%20the%20Windows%20command%20line.,was%20installed%20on%20the%20computer.
+
+On startup the program can check the install date of windows using the "systeminfo|find /i "original" command, and check with its last known install date. This can be used to check if windows has been reinstalled with the "refresh" option or the repair option on a windows installation media.
+
+If this has occurred it can ask if the user wishes to reinstall programs or settings.
+
+If the user intends to reinstall windows manual they can open the profiling software and export a windows answer file. This file can be used to reinstall windows with the current users settings such as language, region, and any other setting windows would ask during install. This makes the install seamless to the user. The answer file will also be used to install the profile software automaticity once windows has been installed and the user has logged in for the first time, and an internet connection is established. It will then ask the user if they wish to restore setting and programs stored in the users profile.
+
+The program can direct the user to the appropriate links to download a new copy of windows. It can then tell the user where to copy the answer file, example: root of the usb drive, or in the sources/ folder of the install media.
+
+Sources: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11, https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-setup-automation-overview?view=windows-11#implicit-answer-file-search-order
+
+The program could include a copy of itself along with the answer file so the user will not need to download it separately.
+
+When the profiler program is installed it can install wget to facilitate downloads.
+
+The program can then compare the list of the users installed software to a list of known software and can then download it using wget, and then install programs using a batch file using the /quiet flag.
+
+
+
+
+
+

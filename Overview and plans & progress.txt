@@ -1,0 +1,142 @@
+Overview
+
+Our project idea is to create an application that can allow for people to install their preferred applications onto a computer easily in the case of them getting a new computer or having to do a system reinstall on their existing computer. This is beneficial as it would allow for someone who is not particularly computer savvy to be able to get a new computer up and running without any worries, or having a platform to be able to reload applications where there is an issue with the user's computer that requires for a system refresh. This allows for all of the desired applications to be reloaded more easily, helping to remove existing issues with the computers software without the need for professional assistance. While there are existing systems in place that enable for these actions to be completed, they are complex beyond what the average computer user would be able to execute without assistance. Overall our idea is to create a platform that is simple and effective to load or reload a person's applications onto their computer with a minimal amount of effort. 
+
+ 
+Our project is an application that can allow for a computer to be easily loaded with the users preferred applications. When someone is setting up a new computer or if they have had to do a system reboot due to having issues with their existing computer this application allows for them to be able to easily setup their computer, installing all of their preferred applications easily and with minimal effort, and in the case of them having to reboot their computer their applications would be reinstalled fresh, without the malware that had infected their computer. 
+
+When setting up a new computer, they would be able to use our application to download all of their preferred applications on to their computer they could ensure that the MS suite of programs are downloaded directly onto their computer, or to download their preferred internet browser to any other things that they would use. For many of the students in this course many of them are gamers, as such they would be able to automatically download any applications that they require for their gaming directly when they are starting up their new computer quickly and conveniently. In the case of small business clients, they would be able to setup their computers with all of the applications that their business requires to run, such as applications that assist in ordering parts, tracking invoices, or any other required applications easily and without issue. 
+
+There are also the features to reload applications back onto a computer in the case where it was required to perform a factory reset on the computer due to it having malicious malware on it that required removal for the computer to continue functioning. This would allow our clients to be able to reload their applications back onto their computer much more easily that otherwise. This is something that would be able to be used by individuals and by small business where they would have otherwise had to manually re download all of their applications one at a time, our project would be able to de this easily for our clients with a minimum of effort. 
+
+ 
+The main target for our project would be for individuals, and for small business. The small business would be ones that do not use computers for their main business, for example a mechanics workshop, or almost any small office that does not have an IT specialist within their business. Our project would be useful for whenever the business are upgrading their computer system, or getting an additional computer for their business and want it to have the same operational capabilities as the existing computers. For individuals, our project is useful for anyone who is getting a new computer. It allows for them to be able to easily setup their new computer, or to reset up their computer after they restore it to remove malware. It could also be used for a person who is setting up a home office to be able to easily setup their computer with their required programs for their job easily, instead of having to check and make sure that they have downloaded all of their required applications for working. 
+
+
+Motivation
+
+For anyone that has ever had to reinstall Windows or bought a new computer would know, it's a real pain. Having to try and remember all the programs you had installed, and then going and downloading them all, surly there is a better way. Internet browsers can remember all your preferences and visited websites, regardless of whether you have a new or old installation. Our project uses the same kind of logic, We wanted a program that would remember your setting and re apply them when you reinstall windows or move to a new computer. We also wanted to make reinstalling all your programs as hassle free as possible. These things are possible but only with professional tools and knowledge, As we wanted something that anyone could use regardless of their computer knowledge, we decided to make our own tool.
+
+
+Landscape
+
+There are a few tools that can do some of the same features as our tool, but most of them are made for professionals. You can modify windows install images and inject your own programs and settings but this is too advanced for most users. You could create a DISM image of a fresh install of windows and patch in applications, but that to is outside of common computer knowledge. And any drivers or platform specific programs would be wiped on the new computer. There are programs such as ninite (https://ninite.com/), but it requires the user to remember what they had installed, and to go out of their way and downland a ninite installer. These types application do help in installing applications, but these tools are not used by the common user. We wanted something that would be as a browser, just login and all your settings are applied automaticity. So we decided to make a tool, so that the average user could benefit from what only professionals were capable of.
+
+There were not many decisions to be made during the planning phase, As the aim and scope of the project was fairly solid. The only decision that had to be made early was whether to incorporate the programs into the Windows image before install, or install the programs after the Windows install. The decision to install the programs after the windows install was made due to the fact that there were a few variables we could not control. If The way Windows included programs was changed that could break the whole install system. Also if any of the program installers were to change or have an unusual installer that could also break the install. Installing the programs after the Windows install will prevent any complication that would be outside our control. 
+
+
+How the project will do it:  
+
+Our Project has 2 parts, a part to read what software the user has installed, and a part to 'write' out that software when reinstalling windows to retrieve their programs. 
+
+  
+
+Read: 
+
+Our program reads the users windows registry to find out what software has installed. Once that is done, the program names and versions are stored in the users profile. 
+
+Then the registry is read again, this time to look at any system settings the user has. They are also stored in the users profile. 
+
+  
+
+Write 
+
+ The writing is a bit more complex. If the user needs to reinstall windows they have the option with our program to retrieve their profile. 
+
+When a user retrieves their profile they are given simple clear instructions on how to download a new copy of windows. They are also provided with a few files. One is a windows answer file, this is used to apply their windows settings, such as regional and language settings. The second is a batch file, this is used to run any command that are not able to be run during install, it is also used to run the profiling software. The third is wget, which will be used later in the process. Finally the last is the profiling software itself. Once this is all done our project will ask if the user wishes to reinstall the users programs. If the user chooses to reinstall their software, our project will then read the programs stored in the users profile, will the compare that to a knows list of program websites, then will use wget to download them, the software will then setup the programs automatically in the background. 
+
+ If the user cannot access the software they can go to the website and login to their account, then they can download the needed files and some instructions. The instructions will guide the user though making a windows usb using the windows media creation tool, and copying the files they downloaded from our website.  
+
+  
+
+*TOOLS* 
+
+ The tools used for the software include but are not limited to: 
+
+C# 
+
+Wget. 
+
+Arch Linux. 
+
+PostgreSQL. 
+
+Apache. 
+
+SFTP. 
+
+Google. 
+
+Facebook. 
+
+SHA256 
+
+ 
+Our tool is written in C# and leverages wget in order to download files. We use an arch Linux server to host our website using an Apache server. We use a PostgreSQL to store and lookup usernames, and have a SFTP server for transfer of user profiles.  
+
+We use services such as google and Facebook for user authentication. User profiles will be encrypted with SHA256. 
+
+Testing:  
+
+Our software was tested in 2 parts. The software, and the website. Our software was tested using a clean install of windows, which we installed a set of programs onto. Then we load the program onto the computer and we then save a user profile. We then look at the programs recorded on the profile to see if the read function works, then we test the write function. This is done by getting a user profile and the files provided by the software for windows reinstall. we then (with the files put in the right place) run the install. We then compare the programs downloaded and installed by the software with the programs we installed in the first test. 
+
+Plans and progress
+
+Our tool Works by reading the windows registry to determine what programs are installed. The windows registry can be read by a non administrator account and therefore can be read by the program without needing admin rights.
+We do this by using the prebuild "registry" class C# library, this gives the program read/write access to HKEY_LOCAL_USER, and READONLY to everything else in the registry, as we are only reading at this point read only is fine.
+
+Once the registry is accessed all programs installed can be read from HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\, HKLM:\SOFTWARE\Wow6432node\Microsoft\Windows\CurrentVersion\Uninstall\ and HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\. This is the same locations that Windows stores a list applications for the add/remove programs section. The list of programs is then stored in the users profile file.
+
+The software will also check for region and language. This is done by checking a few registry keys. Windows does not store language in just one registry key, so we will have to check multiple and compare them.
+HKCU\Software\Microsoft\CTF\SortOrder\Language\00000000
+HKCU\Software\Microsoft\CTF\SortOrder\Language\00000001
+HKCU\Software\Microsoft\CTF\SortOrder\Language\00000002
+HKCU\Control Panel\International\User Profile\[langid]\CachedLanguageName
+HKCU\Software\Microsoft\Internet Explorer\International\AcceptLanguage
+HKCU\Keyboard Layout\Substitutes\[langid]
+HKCU\Keyboard Layout\Preload\2
+
+Region is stored in the following keys HKCU\Control Panel\International\Geo!Name and HKCU\Control Panel\International\Geo!Nation. one these are compared and the language(s) are determined, they will be stored in the users profile.
+The program check for the time and date on startup, it is determined using the (DateTime.Now) fiction in C#. It is then stored in the users profile for use in reinstallation.
+
+Our software also checks for any changes made to windows settings. This is done by checking certain registry entries and comparing them to ones from a fresh install, For example, monitoring "HKEY_CURRENT_USER\Control Panel\" for any changes made. It will then be added to the user profile file. 
+
+We also have a detection modal planned. While this is not required for the program to function, it would be a nice addition. We plan to have it function similar to how password manager do. Where is will detect a program being installed, or just got installed, and ask if the user wishes to include it in their profile. We would plan to have it run in the background, monitoring for any processes that might be an installer. The following is an example of how something like this would function.
+
+Most program installer processes will be named after the program they are installing, example "CrystalDiskInfo". The program can monitor for user run programs and then ask if the user wants them added to the users profile.
+If the program cannot be determined by the process name, then the program can monitor for the processes of common install programs, such as install shield. once a installation is completed and the process is stopped, the program can then read the installed programs from the registry and compare to the programs stored in the users profile file, It can then add any new programs found to the users profile.
+
+Our detection module could also be used to monitor for any changes made to the windows settings. The process is similar to that used to monitor for programs being installed.
+The detection module can also monitor for the Windows settings window, or any other processes that are used to modify Windows settings. Once they are closed the program can compare the current list of current Windows settings to a list of previously stored settings, if any changes have been made, the program will then ask the user if they wish to add the settings to their user profile.
+
+As a part of the detection module the program checks the time and date on startup to check if windows has been reinstalled using the Windows "refresh" option. If so it will ask the user if they wish to reinstall their programs. As windows refresh does not wipe settings, only the programs will need to be installed. The detection module is not required for the software to work, it just helps automate its functions. If it were unable to be included, the user will still be able to use the software manually. We would just have to include import button, to apply all setting and programs to the users profile. And an export button, to provide the user with all the files necessary to facilitate a Windows reinstall.
+
+If the user intends to reinstall windows manually they can open the profiling software and export a few files, the program will also direct the user to the appropriate links to download a new copy of windows. It can then tell the user where to copy the files given, example: root of the usb drive, or in the sources/ folder of the install media. one of the files given to the user is a Windows answer file. This file can be used to reinstall windows with the current users settings such as language, region, and any other setting the Windows installer would ask during install. The program also includes a copy of itself along with the answer file so the user will not need to download it separately. It also includes a copy of wget, this is used to download the users programs. The last file is a batch file, this is used to apply any setting that could not be applied during install. The profiling program also includes a copy of itself so the user will not need to download it separately. The batch file is also used to install the profile software automaticity once windows has been installed and the user has logged in for the first time. The batch file will tell the software to download and install the programs in the users profile.
+The program will then compare the list of the users installed software to a list of known software stored in the program, it will then download the users programs using wget, and then install the programs using the /quiet flag.
+
+That is all the hard stuff. If we are able to complete both the software and the detection module, then we will work on creating a server. This will be used to host a web server, to give users a easy and convenient place to download their user profile. This is handy if they have hardware problems that makes it hard to export their profiles. This would require not only a web server, but also a database, this is used for storing user information. And a file server to download the profile from. We would use third party authentication, such as Google or Facebook to authenticate users. This makes it much more secure as we do not have to handle user credentials. One a user logs into our profiling software using one of the aforementioned authentication methods, their user profile will be encrypted using SHA256, and then sent to our server. We will then store the users profile in our file server. Then we will assign it a number and store that along with their username in our database. When a user or the program requests their profile, we will check their username against our database, and then send them the associated user profile. 
+
+
+Sources
+ 
+Windows answer files. 
+https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11 
+https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/windows-setup-automation-overview?view=windows-11#implicit-answer-file-search-order
+
+Where windows stores program lists.
+https://superuser.com/questions/448473/how-does-the-windows-add-remove-programs-list-get-populated
+
+
+
+accessing registry
+http://msdn.microsoft.com/en-us/library/microsoft.win32.registry.aspx
+https://stackoverflow.com/questions/16370317/accessing-regedit-without-admin-rights#:~:text=You%20can%20run%20regedit%20without%20administrative%20privileges%20by%20launching%20it,of%20HKEY_CURRENT_USER%20are%20read%2Donly.
+
+
+
+Determining windows time, date, region.
+https://www.computerhope.com/issues/ch001734.htm#:~:text=or-,Open%20the%20Windows%20command%20line.,was%20installed%20on%20the%20computer.
+https://answers.microsoft.com/en-us/windows/forum/all/where-are-settings-stored/ac84669a-4d06-4553-a4d4-f01313dc068b
+https://serverfault.com/questions/957167/windows-10-1809-region-language-registry-keys
+
+
